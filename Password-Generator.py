@@ -13,9 +13,11 @@ everyChar = nums + lowercase + uppercase + symbols
 try:
     conn = sqlite3.connect("Password_Database.db")
     conn.execute("CREATE TABLE passwords (password_for text, password text)")
-    print("Making you password database")
+    print("Making you password database \n")
 except:
-    print("Importing you database")
+    print("Importing your database \n")
+    
+cursor = conn.cursor()
 
 
 # GENERATES THE PASSWORD
@@ -40,22 +42,39 @@ def add_password(password):
         conn.execute(f"INSERT INTO passwords VALUES('{password_for}', '{password}')")
 
 
-# MAIN LOOP
-print("Welcome")
-while True:
-    print("""
+# RETRIEVING PASSWORDS
 
----
+def retrieve_password():
+    retrieve_input = input("Which password do you want to retrive? ")
+    select_query = """SELECT * from passwords"""
+    cursor.execute(select_query)
+    records = cursor.fetchall()
+
+    print("Password is ")
+    for row in records:
+        if row[0] == retrieve_input:
+            print(row[1])
+
+    print("")
+    print("")
+
+
+# MAIN LOOP
+print("Welcome \n")
+while True:
+    print("""---
 nw: To make a new password
-rt: To retrieve a password - Still under development
+rt: To retrieve a password
 qt: To quit
 ---
-
         """)
     reason = input()
     if reason == "nw":
         add_password(make_password())
         conn.commit()
+
+    if reason == "rt":
+        retrieve_password()
 
     if reason == "qt":
         break
