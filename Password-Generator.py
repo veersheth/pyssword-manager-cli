@@ -40,6 +40,7 @@ def add_password(password):
 # RETRIEVING PASSWORDS
 
 def retrieve_password():
+    cursor = conn.cursor()
     retrieveInput = input("Which password do you want to retrive? \n").lower()
     select_query = """SELECT * from passwords"""
     cursor.execute(select_query)
@@ -58,10 +59,9 @@ def retrieve_password():
 
 # MAIN LOOP
 
-try: # MAKE THE DATABSE IF IT DOESN'T ALREADY EXIST
+try: # MAKE THE DATABASE IF IT DOESN'T ALREADY EXIST
     conn = sqlite3.connect("Password_Database.db")
     conn.execute("CREATE TABLE passwords (password_for text, password text)")
-    cursor = conn.cursor()
     print("Making your password database \n")
 
     print("The next time you access the database, a master password will be used to make sure it is you\n")
