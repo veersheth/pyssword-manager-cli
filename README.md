@@ -1,5 +1,5 @@
 # Password-Generator
-##A Python Project
+## A Python Project
 
 A basic password generator and manager to quickly make a 10 character random password and store it in a database. 
 To use it, just run the Python file provided and the instructions on how you can use it will be explicitly provided.
