@@ -1,4 +1,4 @@
-# Password-Generator
+# Password-Manager
 ## A Python Project
 
 A basic password generator and manager to quickly make a 10 character random password and store it in a database. 
